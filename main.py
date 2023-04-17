@@ -5,7 +5,7 @@
 #
 import portCompare
 
-query = input("Please enter the firt 2 digit of lookup port: ")
+query = input("Please enter the first 2 digit of lookup port: ")
 result = portCompare.lookupPort(query)
 sortedResult = sorted(result)
 

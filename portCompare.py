@@ -13,14 +13,15 @@ def lookupPort(port_number):
         laddr, localport = ports.laddr  # this is the localport from the port[] tuple
         if str(localport).startswith(port_number):
             list.append(localport)
-    return list
+    return list  # if list is 0 that means psutil didn't find any matching ports should catch exception here
 
 
 # This method returns a new apache port as a string of integer
 def newPort(listOfPort):
     startingNum = listOfPort[0]
 
-    for index, newPort in enumerate(listOfPort):  # If startingNum is equal to the port in the list add by 1 until unique portNum
+    for index, newPort in enumerate(
+            listOfPort):  # If startingNum is equal to the port in the list add by 1 until unique portNum
         if startingNum == listOfPort[index]:
             startingNum += 1
 

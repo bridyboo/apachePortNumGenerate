@@ -11,7 +11,7 @@ def lookupPort(port_number):
 
     for ports in port:
         laddr, localport = ports.laddr  # this is the localport from the port[] tuple
-        if str(localport).startswith(port_number):
+        if str(localport).startswith(port_number) and ports.status == "LISTEN":  # only listening and startswith ports
             list.append(localport)
 
     return list
@@ -26,7 +26,8 @@ def newPort(listOfPort):
         print("There are no ports that start with the first 2 digit you are looking for")
         return
 
-    for index, newPort in enumerate(listOfPort):  # If startingNum is equal to the port in the list add by 1 until unique portNum
+    for index, newPort in enumerate(
+            listOfPort):  # If startingNum is equal to the port in the list add by 1 until unique portNum
         if startingNum == listOfPort[index]:
             startingNum += 1
 

@@ -1,5 +1,6 @@
 # Need to write exceptions try, catch, etc.
-
+# Another bug found, if the exception is caught I think it closes out the window immediately could be wrong tho
+# should be assigned to APACHE port XXXX1 if available
 import portCompare
 
 query = input("Please enter the first 2 digit of lookup port: ")

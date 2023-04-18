@@ -17,6 +17,7 @@ for index, ports in enumerate(sortedResult):
 
 result = portCompare.newPort(sortedResult) # Final result this is the unique Port
 print("\nthis is the new unique port: ", result)
+input("press 'enter' to continue")
 print("\n\n*warning if using with TD this will only query the current state of the server, this means\n"
       "*until TEST has finished deploying port", str(result), ",this will always be the 'unique port' for this server\n"
       "*I will look further for a solution in the future for now there's still some 'manual' work needed\n"

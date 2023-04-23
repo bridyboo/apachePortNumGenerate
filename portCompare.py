@@ -1,5 +1,6 @@
 # Calls psutil to lookup all listening TCP ports that start with a specific 2 digits.
 # newPort is used to return a new port that isn't being used, avoiding duplicate ports.
+# I guess technically I can specify how many digits the new ports are 33###
 import psutil
 
 
@@ -14,21 +15,33 @@ def lookupPort(port_number):
         if str(localport).startswith(port_number) and ports.status == "LISTEN":  # only listening and startswith ports
             list.append(localport)
 
-    return list
-
+    return sorted(list)
 
 # This method returns a new apache port as a string of integer
 # Catches exception if there are no ports available
-def newPort(listOfPort):
+def generateNewPort(listOfPort):
     try:  # if list is 0 that means psutil didn't find any matching ports should catch exception here
         startingNum = listOfPort[0]
     except IndexError:
         print("There are no ports that start with the first 2 digit you are looking for")
-        return
+        return listOfPort
 
-    for index, newPort in enumerate(
-            listOfPort):  # If startingNum is equal to the port in the list add by 1 until unique portNum
+    for index, newPort in enumerate(listOfPort):
         if startingNum == listOfPort[index]:
             startingNum += 1
+    listOfPort.append(startingNum)
+    return listOfPort  # Updates list of port, the last index is the new port.
 
-    return startingNum
+# Need to expand on this with a global variable or composition
+#
+def newPort(listOfPort):
+    try:  # if list is 0 that means psutil didn't find any matching ports should catch exception here
+        startingNum = listOfPort[0]
+    except IndexError:
+        return listOfPort
+
+    lastIndex = len(listOfPort) - 1
+    newPort = listOfPort[lastIndex]
+    return newPort
+
+

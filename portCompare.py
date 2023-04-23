@@ -2,7 +2,7 @@
 # newPort is used to return a new port that isn't being used, avoiding duplicate ports.
 # I guess technically I can specify how many digits the new ports are 33###
 import psutil
-
+import sys
 
 # This method returns all ports that start with the first 2 digit of 'port_number'
 # Returns the list of ports that start with the query-ed port numbers
@@ -24,7 +24,7 @@ def generateNewPort(listOfPort):
         startingNum = listOfPort[0]
     except IndexError:
         print("There are no ports that start with the first 2 digit you are looking for")
-        return listOfPort
+        sys.exit()
 
     for index, newPort in enumerate(listOfPort):
         if startingNum == listOfPort[index]:
@@ -38,7 +38,7 @@ def newPort(listOfPort):
     try:  # if list is 0 that means psutil didn't find any matching ports should catch exception here
         startingNum = listOfPort[0]
     except IndexError:
-        return listOfPort
+        sys.exit()
 
     lastIndex = len(listOfPort) - 1
     newPort = listOfPort[lastIndex]

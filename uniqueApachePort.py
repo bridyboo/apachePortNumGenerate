@@ -14,14 +14,16 @@ while True:
     for index, ports in enumerate(result):
         print(result[index], "\t\tListen")
 
-    print("\nPress 'enter' to generate new ports, press 'n' to end the program")
-    print("These the new unique ports: ")
+    print("\nPress 'enter' to generate new ports, press 'e' to end the program")
+    print("These are the new unique ports: ")
     count = 0
     while True:  # generate multiple ports maybe
         result = portCompare.generateNewPort(result)  # Final result this is the unique Port
+        if result is None:
+            break
         print(portCompare.newPort(result))
         user_input = input()
-        if user_input == 'n':
+        if user_input == 'e':
             count += 1
             break
 

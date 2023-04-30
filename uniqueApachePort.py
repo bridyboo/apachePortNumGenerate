@@ -33,5 +33,5 @@ while True:
     if user_input == 'e':
         break
 
-print("developed by Matthew Brian Darmadi, thank you.")
+print("\ndeveloped by Matthew Brian Darmadi, thank you.")
 input()

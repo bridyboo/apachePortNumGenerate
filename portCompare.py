@@ -26,7 +26,7 @@ def generateNewPort(listOfPort):
     try:  # if list is 0 that means psutil didn't find any matching ports should catch exception here
         startingNum = min(listOfPort)  # startingNum is the smallest port in the list
     except ValueError:
-        print("There are no ports that start with the first 2 digit you are looking for")
+        print("\n\n\tThere are no ports that start with the first 2 digit you are looking for\n")
         return
 
     newPort = startingNum + 1

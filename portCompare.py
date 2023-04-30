@@ -4,6 +4,7 @@
 import psutil
 import sys
 
+
 # This method returns all ports that start with the first 2 digit of 'port_number'
 # Returns the list of ports that start with the query-ed port numbers
 def lookupPort(port_number):
@@ -17,22 +18,24 @@ def lookupPort(port_number):
 
     return sorted(list)
 
+
 # This method returns a new apache port as a string of integer
 # Catches exception if there are no ports available
 # I need to sort here as well at the end
 def generateNewPort(listOfPort):
     try:  # if list is 0 that means psutil didn't find any matching ports should catch exception here
-        startingNum = listOfPort[0]
-    except IndexError:
+        startingNum = min(listOfPort)  # startingNum is the smallest port in the list
+    except ValueError:
         print("There are no ports that start with the first 2 digit you are looking for")
         sys.exit()
 
-    for index, newPort in enumerate(listOfPort):
-        if startingNum == listOfPort[index]: # This logic is wrong, doesn't actually do anything! this shit just counts up from the 0th index, doesn't actually compare with existing ports
-            startingNum += 1
+    newPort = startingNum + 1
+    while newPort in listOfPort:
+        newPort += 1
 
-    listOfPort.append(startingNum)    
+    listOfPort.append(newPort)
     return listOfPort  # Updates list of port, the last index is the new port.
+
 
 # Need to expand on this with a global variable or composition
 #
@@ -45,5 +48,3 @@ def newPort(listOfPort):
     lastIndex = len(listOfPort) - 1
     newPort = listOfPort[lastIndex]
     return newPort
-
-

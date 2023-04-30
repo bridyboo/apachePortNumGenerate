@@ -32,3 +32,4 @@ while True:
         break
 
 print("developed by Matthew Brian Darmadi, thank you.")
+input()

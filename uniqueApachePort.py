@@ -1,6 +1,4 @@
 # Need to write exceptions try, catch, etc.
-# Another bug found, if the exception is caught I think it closes out the window immediately could be wrong tho
-# I think needs a function 'add multiple newPorts'
 # Regardless I need to figure out how to keep track of all the new ports, either saved in a separate log, or saved in
 # instance of the class as a global static variable (will look into it)
 # Currently if there is no existing port it will show the user, 'none' for new ports, when it should be XX001

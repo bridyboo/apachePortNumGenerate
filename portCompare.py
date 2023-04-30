@@ -19,6 +19,7 @@ def lookupPort(port_number):
 
 # This method returns a new apache port as a string of integer
 # Catches exception if there are no ports available
+# I need to sort here as well at the end
 def generateNewPort(listOfPort):
     try:  # if list is 0 that means psutil didn't find any matching ports should catch exception here
         startingNum = listOfPort[0]
@@ -27,9 +28,10 @@ def generateNewPort(listOfPort):
         sys.exit()
 
     for index, newPort in enumerate(listOfPort):
-        if startingNum == listOfPort[index]:
+        if startingNum == listOfPort[index]: # This logic is wrong, doesn't actually do anything! this shit just counts up from the 0th index, doesn't actually compare with existing ports
             startingNum += 1
-    listOfPort.append(startingNum)
+
+    listOfPort.append(startingNum)    
     return listOfPort  # Updates list of port, the last index is the new port.
 
 # Need to expand on this with a global variable or composition

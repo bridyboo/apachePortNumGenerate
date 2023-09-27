@@ -9,14 +9,18 @@ import sys
 # Returns the list of ports that start with the query-ed port numbers
 def lookupPort(port_number):
     port = psutil.net_connections('tcp')
-    list = []
+    result = set()  # Using a set to ensure unique port numbers
+
+    previous_port = None
 
     for ports in port:
-        laddr, localport = ports.laddr  # this is the localport from the port[] tuple
-        if str(localport).startswith(port_number) and ports.status == "LISTEN":  # only listening and startswith ports
-            list.append(localport)
+        laddr, localport = ports.laddr
+        if str(localport).startswith(port_number) and ports.status == "LISTEN":
+            if localport != previous_port:
+                result.add(localport)
+            previous_port = localport
 
-    return sorted(list)
+    return sorted(result)
 
 
 # This method returns a new apache port as a string of integer
